@@ -1,4 +1,7 @@
+Nama: Michael Susilo
+Training BIDUK
 # eatery-duwamish
+
 THIS IS AN APPLICATION OF ASP.NET WEBFORM (DUWAMISH)
 
 STEP-STEP:

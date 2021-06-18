@@ -15,7 +15,7 @@ TASK:
 
 
 PROGRESS:
-week1
+week1 - (18 Juni 2021): 
 1. Kembali mereview Convention yang digunakan di BIDUK
 2. Menconnect ke Database local / mengubah connection string
 3. memahami isi code templatenya

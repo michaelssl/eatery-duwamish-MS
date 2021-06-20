@@ -126,6 +126,8 @@
     <Content Include="lib\datatable-bootstrap\images\sort_both.png" />
     <Content Include="lib\datatable-bootstrap\images\sort_desc.png" />
     <Content Include="lib\datatable-bootstrap\images\sort_desc_disabled.png" />
+    <Content Include="Recipe.aspx" />
+    <Content Include="RecipeDetail.aspx" />
     <Content Include="Site.Master" />
     <Content Include="UserControl\NotificationControl.ascx" />
     <Content Include="UserControl\PagingControl.ascx" />
@@ -162,6 +164,20 @@
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe.aspx.cs">
+      <DependentUpon>Recipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recipe.aspx.designer.cs">
+      <DependentUpon>Recipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeDetail.aspx.cs">
+      <DependentUpon>RecipeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecipeDetail.aspx.designer.cs">
+      <DependentUpon>RecipeDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

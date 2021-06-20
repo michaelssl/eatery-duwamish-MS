@@ -50,6 +50,7 @@
         }
     </script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -174,16 +175,20 @@
                                             tabindex="0" class="sorting_asc center">
                                         </th>
                                         <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
-                                            class="sorting_asc text-center">
+                                            class="sorting_asc">
                                             Dish Name
                                         </th>
                                         <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
-                                            class="sorting_asc text-center">
+                                            class="sorting_asc">
                                             Dish Type
                                         </th>
                                         <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
-                                            class="sorting_asc text-center">
+                                            class="sorting_asc">
                                             Price
+                                        </th>
+                                        <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
+                                            class="sorting_asc">
+                                            Toggle
                                         </th>
                                     </tr>
                                 </thead>
@@ -205,6 +210,9 @@
                                 </td>
                                 <td>
                                     <asp:Literal ID="litPrice" runat="server"></asp:Literal>
+                                </td>
+                                <td>
+                                    <asp:HyperLink ID="hplRecipe" runat="server">Recipes</asp:HyperLink>
                                 </td>
                             </tr>
                         </ItemTemplate>

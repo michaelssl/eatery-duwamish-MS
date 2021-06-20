@@ -90,6 +90,9 @@ namespace EateryDuwamish
 
                 CheckBox chkChoose = (CheckBox)e.Item.FindControl("chkChoose");
                 chkChoose.Attributes.Add("data-value", dish.DishID.ToString());
+
+                HyperLink hplRecipe = (HyperLink)e.Item.FindControl("hplRecipe");
+                hplRecipe.NavigateUrl = $"~/Recipe.aspx?id={dish.DishID.ToString()}";
             }
         }
         protected void rptDish_ItemCommand(object sender, RepeaterCommandEventArgs e)

@@ -48,6 +48,7 @@ namespace DataAccess
                 throw ex;
             }
         }
+
         public DishData GetDishByID(int dishID)
         {
             try
@@ -82,6 +83,7 @@ namespace DataAccess
                 throw ex;
             }
         }
+
         public int InsertUpdateDish(DishData dish, SqlTransaction SqlTran)
         {
             try
@@ -104,6 +106,7 @@ namespace DataAccess
                 throw ex;
             }
         }
+
         public int DeleteDishes(string dishIDs,SqlTransaction SqlTran)
         {
             try

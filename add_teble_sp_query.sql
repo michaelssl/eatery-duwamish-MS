@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[msRecipe](
 	[RecipeID] [int] IDENTITY(1,1) NOT NULL,
 	[DishID] [int] NOT NULL,
 	[RecipeName] [varchar](200) NOT NULL,
-	[RecipeDescription] [varchar](200) DEFAULT '',
+	[RecipeDescription] [varchar](MAX) DEFAULT '',
 	[AuditedActivity] [char](1) NOT NULL,
 	[AuditedTime] [datetime] NOT NULL,
 PRIMARY KEY CLUSTERED 
@@ -278,4 +278,29 @@ BEGIN
 	WHERE RecipeId = @RecipeId AND AuditedActivity <> 'D'
 END
 GO
+
+/****** Object:  StoredProcedure [dbo].[Recipe_UpdateDescription]   ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/**
+ * Created by: Michael Susilo
+ * Date: 20 Jun 2021
+ * Purpose: update recipe description
+ */
+CREATE PROCEDURE [dbo].[Recipe_UpdateDescription]
+	@RecipeID INT,
+	@RecipeDescription VARCHAR(MAX)
+AS
+BEGIN
+	UPDATE msRecipe
+	SET RecipeDescription = @RecipeDescription,
+		AuditedActivity = 'U',
+		AuditedTime = GETDATE()
+	WHERE RecipeID = @RecipeID AND AuditedActivity <> 'D'
+	
+END
+GO
+
 

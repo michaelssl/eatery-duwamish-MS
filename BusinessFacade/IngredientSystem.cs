@@ -50,6 +50,18 @@ namespace BusinessFacade
             }
         }
 
+        public int DeleteIngredients(IEnumerable<int> ingredientIDs)
+        {
+            try
+            {
+                return new IngredientRule().DeleteIngredients(ingredientIDs);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
     }
 }

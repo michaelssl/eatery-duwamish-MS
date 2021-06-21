@@ -38,5 +38,30 @@ namespace BusinessRule
 
         }
 
+        public int DeleteIngredients(IEnumerable<int> ingredientIDs)
+        {
+            SqlConnection SqlConn = null;
+            SqlTransaction SqlTran = null;
+
+            try
+            {
+                SqlConn = new SqlConnection(SystemConfigurations.EateryConnectionString);
+                SqlConn.Open();
+                SqlTran = SqlConn.BeginTransaction();
+                int rowAffected = new IngredientDB().DeleteIngredients(String.Join(",", ingredientIDs), SqlTran);
+                SqlTran.Commit();
+                SqlConn.Close();
+                return rowAffected;
+
+            }
+            catch (Exception ex)
+            {
+                SqlTran.Rollback();
+                SqlConn.Close();
+                throw ex;
+            }
+
+        }
+
     }
 }

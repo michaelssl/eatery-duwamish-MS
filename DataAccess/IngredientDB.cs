@@ -114,6 +114,23 @@ namespace DataAccess
             }
         }
 
+        public int DeleteIngredients(string ingredientIDs, SqlTransaction SqlTran)
+        {
+            try
+            {
+                string SpName = "dbo.Ingredient_Delete";
+                SqlCommand SqlCmd = new SqlCommand(SpName, SqlTran.Connection, SqlTran);
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+                SqlCmd.Parameters.Add(new SqlParameter("@IngredientIDs", ingredientIDs));
+                return SqlCmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
     }
 

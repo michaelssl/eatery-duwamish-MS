@@ -130,6 +130,23 @@ namespace DataAccess
             }
         }
 
+        public int DeleteRecipes(string recipeIDs, SqlTransaction SqlTran)
+        {
+            try
+            {
+                string SpName = "dbo.Recipe_Delete";
+                SqlCommand SqlCmd = new SqlCommand(SpName, SqlTran.Connection, SqlTran);
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+                SqlCmd.Parameters.Add(new SqlParameter("@RecipeIDs", recipeIDs));
+                return SqlCmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
     }
 }

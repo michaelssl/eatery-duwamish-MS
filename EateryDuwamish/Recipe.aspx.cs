@@ -160,7 +160,12 @@ namespace EateryDuwamish
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string strDeletedIDs = hdfDeletedRecipes.Value;
-            
+            IEnumerable<int> deletedIDs = strDeletedIDs.Split(',').Select(Int32.Parse);
+            int rowAffected = new RecipeSystem().DeleteRecipes(deletedIDs);
+            if (rowAffected <= 0)
+                throw new Exception("No Data Deleted");
+            Session["delete-success"] = 1;
+            Response.Redirect($"Recipe.aspx?id={Convert.ToInt32(Request["id"])}");
        
         }
 

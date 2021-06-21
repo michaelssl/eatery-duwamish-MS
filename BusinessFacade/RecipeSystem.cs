@@ -63,5 +63,18 @@ namespace BusinessFacade
             }
         }
 
+        public int DeleteRecipes(IEnumerable<int> recipeIDs)
+        {
+            try
+            {
+                return new RecipeRule().DeleteRecipes(recipeIDs);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

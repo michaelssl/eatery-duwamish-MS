@@ -59,6 +59,47 @@ namespace BusinessRule
             }
         }
 
+        public int DeleteRecipes(IEnumerable<int> recipeIDs)
+        {
+
+            SqlConnection SqlConn = null;
+            SqlTransaction SqlTran = null;
+
+            try
+            {
+                SqlConn = new SqlConnection(SystemConfigurations.EateryConnectionString);
+                SqlConn.Open();
+                SqlTran = SqlConn.BeginTransaction();
+
+                // Ambil semua ingredient dari semua recipe yang ingin di delete
+                foreach (int recipeID in recipeIDs)
+                {
+                    string strIngredientIDs="";
+
+                    List<IngredientData> listIngredient = new IngredientDB().GetListIngredientByRecipeID(recipeID);
+                    foreach (IngredientData ingredient in listIngredient)
+                    {
+                        strIngredientIDs += ingredient.IngredientID.ToString() + ',';
+                    }
+                    // Delete semua ingredient dari semua recipe yang ingin di delete
+                    int rowsAffectedIngredient = new IngredientDB().DeleteIngredients(strIngredientIDs, SqlTran);
+                }
+
+                // Delete All Recipe yang dipilih
+                int rowAffectedRecipe = new RecipeDB().DeleteRecipes(String.Join(",", recipeIDs), SqlTran);
+
+                SqlTran.Commit();
+                SqlConn.Close();
+                return rowAffectedRecipe;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
 
 
     }

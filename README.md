@@ -1,6 +1,9 @@
-Nama: Michael Susilo
-Training BIDUK
+
 # eatery-duwamish
+
+NAMA: Michael Susilo
+
+Training BIDUK
 
 THIS IS AN APPLICATION OF ASP.NET WEBFORM (DUWAMISH)
 
@@ -27,3 +30,4 @@ week2 - (25 Juni 2021)
 1. Membuat View, Insert, Update untuk Recipes
 2. Membuat View, Insert, Update untuk RecipeDetail / Ingredient
 3. Membuat Update Recipe Description di RecipeDetail
+4. Membuat Delete untuk Dish, Recipe, dan Ingredient

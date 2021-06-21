@@ -187,7 +187,7 @@
                                         </th>
                                         <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
                                             class="sorting_asc">
-                                            Ingredient Name
+                                            Ingredient
                                         </th>
                                         <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
                                             class="sorting_asc">

@@ -33,6 +33,7 @@ namespace BusinessRule
                 throw ex;
             }
         }
+
         public int DeleteDishes(IEnumerable<int> dishIDs)
         {
             SqlConnection SqlConn = null;
@@ -42,10 +43,37 @@ namespace BusinessRule
                 SqlConn = new SqlConnection(SystemConfigurations.EateryConnectionString);
                 SqlConn.Open();
                 SqlTran = SqlConn.BeginTransaction();
-                int rowsAffected = new DishDB().DeleteDishes(String.Join(",", dishIDs), SqlTran);
+
+                // Ambil Semua Recipe dari tiap-tiap Dish
+                foreach (int dishID in dishIDs)
+                {
+                    string strRecipeIDs = "";
+                    List<RecipeData> listRecipe = new RecipeDB().GetListRecipeByDishID(dishID);
+
+                    // Ambil Semua Ingredient dari tiap-tiap Recipe
+                    foreach (RecipeData recipe in listRecipe)
+                    {
+                        string strIngredientIDs = "";
+                        List<IngredientData> listIngredient = new IngredientDB().GetListIngredientByRecipeID(recipe.RecipeID);
+                        foreach (IngredientData ingredient in listIngredient)
+                        {
+                            strIngredientIDs += ingredient.IngredientID.ToString() + ',';
+                        }
+                        // Delete All Ingredient yang terhubung dengan recipe
+                        int rowAffectedIngredient = new IngredientDB().DeleteIngredients(strIngredientIDs, SqlTran);
+
+                        strRecipeIDs += recipe.RecipeID.ToString() + ',';
+                    }
+
+                    // Delete All Recipe yang terhubung dengan tiap-tiap dish yang di pilih
+                    int rowAffectedRecipe = new RecipeDB().DeleteRecipes(strRecipeIDs, SqlTran);
+                }
+                // Delete All Dish yang dipilih
+                int rowsAffectedDish = new DishDB().DeleteDishes(String.Join(",", dishIDs), SqlTran);
+
                 SqlTran.Commit();
                 SqlConn.Close();
-                return rowsAffected;
+                return rowsAffectedDish;
             }
             catch (Exception ex)
             {
